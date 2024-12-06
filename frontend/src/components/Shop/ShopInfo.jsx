@@ -39,9 +39,14 @@ const ShopInfo = ({ isOwner }) => {
     console.log(products, 'productsproductsproducts');
 
     const totalReviewsLength = products?.reduce((acc, product) => acc + product?.reviews?.length, 0) || 0;
-    const totalRatings =
-        products?.reduce((acc, product) => acc + product.reviews.reduce((sum, review) => sum + review.rating, 0), 0) ||
-        0;
+    const totalRatings = products?.reduce((acc, product) => {
+        return (
+            acc +
+            product?.reviews?.reduce((acc, review) => {
+                return acc + review.rating;
+            }, 0)
+        );
+    }, 0);
     const averageRating = (totalRatings / totalReviewsLength || 0).toFixed(2);
     console.log(data, 'datadatadata');
     return (
@@ -53,21 +58,21 @@ const ShopInfo = ({ isOwner }) => {
                     <div className="w-full py-5">
                         <div className="w-full flex item-center justify-center">
                             <img
-                                src={`${backend_url}${data.avatar}`}
+                                src={`${backend_url}${data?.avatar}`}
                                 alt=""
                                 className="w-[150px] h-[150px] object-cover rounded-full border-[3px] border-[#febd69]"
                             />
                         </div>
-                        <h3 className="text-center text-[#1c1c1b] font-[700] py-2 text-[25px]">{data.name}</h3>
-                        <p className="text-[16px] text-[#131921] p-[10px] flex items-center">{data.description}</p>
+                        <h3 className="text-center text-[#1c1c1b] font-[700] py-2 text-[25px]">{data?.name}</h3>
+                        <p className="text-[16px] text-[#131921] p-[10px] flex items-center">{data?.description}</p>
                     </div>
                     <div className="p-3">
                         <h5 className="font-[600]">Address:</h5>
-                        <h4 className="text-[#131921]">{data.address}</h4>
+                        <h4 className="text-[#131921]">{data?.address}</h4>
                     </div>
                     <div className="p-3">
                         <h5 className="font-[600]">Phone number:</h5>
-                        <h4 className="text-[#131921]">+84 {data.phoneNumber}</h4>
+                        <h4 className="text-[#131921]">+84 {data?.phoneNumber}</h4>
                     </div>
                     <div className="p-3">
                         <h5 className="font-[600]">Total products:</h5>
