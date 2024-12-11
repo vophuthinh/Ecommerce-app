@@ -7,15 +7,16 @@ import newsletter from '../../Assests/PhotoType/newsletter.png';
 const Footer = () => {
     return (
         <>
+            {/* Newsletter section */}
             <footer className="bg-[#232f3e] py-4">
                 <div className="max-w-7xl mx-auto px-4">
-                    <div className="flex flex-col md:flex-row items-center gap-6">
-                        <div className="md:w-2/5 flex items-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-center gap-6">
+                        <div className="sm:w-2/5 flex items-center gap-4">
                             <img src={newsletter} alt="newsletter" className="w-12" />
-                            <h2 className="text-white text-lg md:text-xl font-semibold">Sign Up for Newsletter</h2>
+                            <h2 className="text-white text-lg sm:text-xl font-semibold">Sign Up for Newsletter</h2>
                         </div>
-                        <div className="md:w-3/5">
-                            <div className="flex">
+                        <div className="sm:w-3/5 w-full">
+                            <div className="flex w-full">
                                 <input
                                     type="text"
                                     className="w-full py-3 px-4 rounded-l-full focus:outline-none text-gray-700"
@@ -31,8 +32,10 @@ const Footer = () => {
                 </div>
             </footer>
 
+            {/* Footer with contact and links */}
             <footer className="bg-[#232f3e] py-8 border-t border-white/10">
                 <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-white">
+                    {/* Contact Us */}
                     <div>
                         <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
                         <address className="not-italic text-sm mb-4">
@@ -60,6 +63,7 @@ const Footer = () => {
                         </div>
                     </div>
 
+                    {/* Information links */}
                     <div>
                         <h4 className="text-lg font-semibold mb-4">Information</h4>
                         <div className="flex flex-col space-y-2 text-sm">
@@ -79,6 +83,7 @@ const Footer = () => {
                         </div>
                     </div>
 
+                    {/* Account links */}
                     <div>
                         <h4 className="text-lg font-semibold mb-4">Account</h4>
                         <div className="flex flex-col space-y-2 text-sm">
@@ -88,6 +93,7 @@ const Footer = () => {
                         </div>
                     </div>
 
+                    {/* Quick Links */}
                     <div>
                         <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
                         <div className="flex flex-col space-y-2 text-sm">
@@ -100,6 +106,7 @@ const Footer = () => {
                 </div>
             </footer>
 
+            {/* Footer copyright */}
             <footer className="bg-[#232f3e] py-4 border-t border-white/10">
                 <div className="max-w-7xl mx-auto px-4">
                     <p className="text-center text-sm text-white">

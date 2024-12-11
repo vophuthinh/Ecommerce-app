@@ -16,7 +16,8 @@ const AdminDashboardMain = () => {
 
     const { adminOrders, adminOrderLoading } = useSelector((state) => state.order);
     const { sellers } = useSelector((state) => state.seller);
-    console.log(adminOrders,'adminOrdersadminOrders')
+    console.log(adminOrders, 'adminOrdersadminOrders');
+
     useEffect(() => {
         dispatch(getAllOrdersOfAdmin());
         dispatch(getAllSellers());
@@ -28,7 +29,6 @@ const AdminDashboardMain = () => {
 
     const columns = [
         { field: 'id', headerName: 'Order ID', minWidth: 150, flex: 0.7 },
-
         {
             field: 'status',
             headerName: 'Status',
@@ -45,7 +45,6 @@ const AdminDashboardMain = () => {
             minWidth: 130,
             flex: 0.7,
         },
-
         {
             field: 'total',
             headerName: 'Total',
@@ -83,8 +82,9 @@ const AdminDashboardMain = () => {
             ) : (
                 <div className="w-full p-4">
                     <h3 className="text-[22px] font-Poppins pb-2">Overview</h3>
-                    <div className="w-full block 800px:flex items-center justify-between">
-                        <div className="w-full mb-4 800px:w-[30%] min-h-[20vh] bg-white shadow rounded px-2 py-5">
+                    <div className="w-full block sm:flex sm:items-center sm:justify-between">
+                        {/* Total Revenue */}
+                        <div className="w-full mb-4 sm:w-[30%] min-h-[20vh] bg-white shadow rounded px-2 py-5">
                             <div className="flex items-center">
                                 <AiOutlineMoneyCollect size={30} className="mr-2" fill="#00000085" />
                                 <h3
@@ -100,7 +100,8 @@ const AdminDashboardMain = () => {
                             </h5>
                         </div>
 
-                        <div className="w-full mb-4 800px:w-[30%] min-h-[20vh] bg-white shadow rounded px-2 py-5">
+                        {/* Seller Management */}
+                        <div className="w-full mb-4 sm:w-[30%] min-h-[20vh] bg-white shadow rounded px-2 py-5">
                             <div className="flex items-center">
                                 <MdBorderClear size={30} className="mr-2" fill="#00000085" />
                                 <h3
@@ -115,7 +116,8 @@ const AdminDashboardMain = () => {
                             </Link>
                         </div>
 
-                        <div className="w-full mb-4 800px:w-[30%] min-h-[20vh] bg-white shadow rounded px-2 py-5">
+                        {/* Orders */}
+                        <div className="w-full mb-4 sm:w-[30%] min-h-[20vh] bg-white shadow rounded px-2 py-5">
                             <div className="flex items-center">
                                 <AiOutlineMoneyCollect size={30} className="mr-2" fill="#00000085" />
                                 <h3
@@ -136,7 +138,16 @@ const AdminDashboardMain = () => {
                     <br />
                     <h3 className="text-[22px] font-Poppins pb-2">Latest Orders</h3>
                     <div className="w-full min-h-[45vh] bg-white rounded">
-                        <DataGrid rows={row} columns={columns} pageSize={4} disableSelectionOnClick autoHeight />
+                        <div className="overflow-x-auto">
+                            <DataGrid
+                                rows={row}
+                                columns={columns}
+                                pageSize={4}
+                                disableSelectionOnClick
+                                autoHeight
+                                hideFooterSelectedRowCount
+                            />
+                        </div>
                     </div>
                 </div>
             )}

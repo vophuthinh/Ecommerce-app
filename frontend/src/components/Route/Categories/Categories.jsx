@@ -22,8 +22,9 @@ const Categories = () => {
                 </div>
             </div>
 
+            {/* Categories section */}
             <div className={`${styles.section} bg-white p-6 rounded-lg mb-12`} id="categories">
-                <div className="grid grid-cols-5 gap-0">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                     {categoriesData &&
                         categoriesData.map((i, index) => {
                             const isLastRow = Math.floor(index / 5) === Math.floor((categoriesData.length - 1) / 5);
@@ -31,16 +32,16 @@ const Categories = () => {
 
                             return (
                                 <div
-                                    className={`flex items-center justify-between p-4 ${!isLastRow ? 'border-b' : ''} ${
+                                    className={`flex flex-col items-center justify-center p-4 ${
+                                        !isLastRow ? 'border-b' : ''
+                                    } ${
                                         isCustomNoRightBorder ? '' : 'border-r'
                                     } cursor-pointer hover:shadow-md transition-shadow duration-300`}
                                     key={i.id}
                                     onClick={() => handleSubmit(i)}
                                 >
-                                    <div>
-                                        <h5 className="text-lg font-semibold text-gray-800">{i.title}</h5>
-                                    </div>
-                                    <img src={i.image_Url} className="w-16 h-auto object-contain" alt={i.title} />
+                                    <img src={i.image_Url} className="w-16 h-16 object-contain mb-2" alt={i.title} />
+                                    <h5 className="text-lg font-semibold text-gray-800 text-center">{i.title}</h5>
                                 </div>
                             );
                         })}

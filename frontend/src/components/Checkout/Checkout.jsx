@@ -128,7 +128,11 @@ const Checkout = () => {
                     />
                 </div>
             </div>
-            <div className={`${styles.button} w-[150px] 800px:w-[280px] mt-10 bg-[#f63b60f3]`} onClick={paymentSubmit}>
+            <div
+                className={`${styles.button} w-[150px] 800px:w-[280px] mt-10 cursor-pointer bg-gradient-to-r from-[#232f3e] to-[#232f3e] hover:from-[#febd69] hover:to-[#febd69] hover:shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:text-[#232f3e]
+            `}
+                onClick={paymentSubmit}
+            >
                 <h5 className="text-white">Payment</h5>
             </div>
         </div>

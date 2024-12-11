@@ -11,6 +11,7 @@ import { getAllEventsShop } from '../../redux/actions/event';
 import Lottie from 'react-lottie';
 import animationData from '../../Assests/animations/searchNotFound.json';
 import animationData2 from '../../Assests/animations/notHaveEvent.json';
+import { format } from 'date-fns';
 
 const ShopProfileData = ({ isOwner }) => {
     const { products } = useSelector((state) => state.products);
@@ -43,7 +44,7 @@ const ShopProfileData = ({ isOwner }) => {
     const [active, setActive] = useState(1);
 
     const allReviews = products && products.map((product) => product.reviews || []).flat();
-    console.log(products, 'allReviewsallReviews');
+
     return (
         <div className="w-full">
             <div className="flex w-full items-center justify-between bg-[#232f3e] p-3 rounded-xl">
@@ -122,7 +123,7 @@ const ShopProfileData = ({ isOwner }) => {
                 <div className="w-full bg-[#ffffff] p-6 rounded-lg shadow-md">
                     {allReviews && allReviews.length > 0 ? (
                         allReviews.map((item, index) => {
-                            console.log(item, 'itemitem');
+                            const formattedDate = item?.date ? format(new Date(item.date), 'PPpp') : 'N/A';
                             return (
                                 <div
                                     key={index}
@@ -173,7 +174,7 @@ const ShopProfileData = ({ isOwner }) => {
                                         )}
 
                                         {/* Thời gian */}
-                                        <p className="text-xs text-[#777777] mt-1 italic">{item?.date}</p>
+                                        <p className="text-xs text-[#777777] mt-1 italic">{formattedDate}</p>
                                     </div>
                                 </div>
                             );

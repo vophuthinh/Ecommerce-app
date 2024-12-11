@@ -16,7 +16,7 @@ const AllOrders = () => {
 
     useEffect(() => {
         dispatch(getAllOrdersOfShop(seller.id));
-    }, [dispatch]);
+    }, [dispatch, seller.id]);
 
     const columns = [
         { field: 'id', headerName: 'Order ID', minWidth: 150, flex: 0.7 },
@@ -26,9 +26,15 @@ const AllOrders = () => {
             headerName: 'Status',
             minWidth: 130,
             flex: 0.7,
-            cellClassName: (params) => {
-                return params.getValue(params.id, 'status') === 'Delivered' ? 'greenColor' : 'redColor';
-            },
+            renderCell: (params) => (
+                <span
+                    className={`px-2 py-1 rounded-full text-sm font-medium ${
+                        params.row.status === 'Delivered' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                    }`}
+                >
+                    {params.row.status}
+                </span>
+            ),
         },
         {
             field: 'itemsQty',
@@ -36,34 +42,35 @@ const AllOrders = () => {
             type: 'number',
             minWidth: 130,
             flex: 0.7,
+            renderCell: (params) => <span className="text-gray-800 font-medium">{params.row.itemsQty}</span>,
         },
-
         {
             field: 'total',
             headerName: 'Total',
             type: 'number',
             minWidth: 130,
             flex: 0.8,
+            renderCell: (params) => <span className="font-semibold text-gray-800">{params.row.total}</span>,
         },
-
         {
-            field: ' ',
+            field: 'action',
+            headerName: 'Details',
             flex: 1,
             minWidth: 150,
-            headerName: '',
-            type: 'number',
             sortable: false,
-            renderCell: (params) => {
-                return (
-                    <>
-                        <Link to={`/order/${params.id}`}>
-                            <Button>
-                                <AiOutlineArrowRight size={20} />
-                            </Button>
-                        </Link>
-                    </>
-                );
-            },
+            align: 'right',
+            headerAlign: 'right',
+            renderCell: (params) => (
+                <Link to={`/order/${params.id}`} style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
+                    <Button
+                        variant="outlined"
+                        color="primary"
+                        className="transition-transform duration-300 transform hover:scale-105"
+                    >
+                        <AiOutlineArrowRight size={20} />
+                    </Button>
+                </Link>
+            ),
         },
     ];
 
@@ -84,8 +91,28 @@ const AllOrders = () => {
             {isLoading ? (
                 <Loader />
             ) : (
-                <div className="w-full mx-8 pt-1 mt-10 bg-white">
-                    <DataGrid rows={row} columns={columns} pageSize={10} disableSelectionOnClick autoHeight />
+                <div className="w-[90%] mx-auto pt-6 mt-6 bg-white shadow-md rounded-lg">
+                    <h1 className="text-xl font-semibold text-gray-800 mb-4 px-4">All Orders</h1>
+                    <DataGrid
+                        rows={row}
+                        columns={columns}
+                        pageSize={10}
+                        disableSelectionOnClick
+                        autoHeight
+                        className="bg-white rounded-lg"
+                        sx={{
+                            '& .MuiDataGrid-columnHeaders': {
+                                backgroundColor: '#f3f4f6',
+                                color: '#374151',
+                                fontWeight: 'bold',
+                            },
+                            '& .MuiDataGrid-row': {
+                                '&:hover': {
+                                    backgroundColor: '#f9fafb',
+                                },
+                            },
+                        }}
+                    />
                 </div>
             )}
         </>

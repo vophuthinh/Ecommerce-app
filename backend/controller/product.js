@@ -8,7 +8,7 @@ const Shop = require('../model/shop');
 const { upload } = require('../multer');
 const ErrorHandler = require('../utils/ErrorHandler');
 const fs = require('fs');
-const { analyzeSentiment, checkModelStatus, getDominantLabel } = require('./analyzeSentimentWithGPT');
+const { analyzeSentiment, checkModelStatus, getDominantLabel } = require('./analyzeSentiment');
 
 // create product
 router.post(
